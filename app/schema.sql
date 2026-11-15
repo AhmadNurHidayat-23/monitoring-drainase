@@ -1,0 +1,1 @@
+-- Model domain diinisialisasi melalui SQLAlchemy di core/migrate.py.
