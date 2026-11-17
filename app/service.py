@@ -13,7 +13,7 @@ def numeric(v,label,minimum,maximum):
         if not math.isfinite(value) or not minimum<=value<=maximum:
             raise ValueError()
         return value
-    except (ValueError,TypeError):
+    except (ValueError,TypeError,OverflowError):
         raise Problem(label+' harus angka antara '+str(minimum)+' dan '+str(maximum)+'.') from None
 
 def staff(db,id):

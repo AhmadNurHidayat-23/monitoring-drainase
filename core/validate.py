@@ -8,9 +8,15 @@ def text(value, label, maximum=120, required=True):
     return value.strip()
 
 def integer(value, label, minimum=0, maximum=1000000000000):
-    if isinstance(value, bool) or not re.fullmatch(r'-?\d+', str(value)) or not minimum <= int(value) <= maximum:
+    try:
+        if isinstance(value, bool) or not re.fullmatch(r'-?\d+', str(value)):
+            raise ValueError()
+        result = int(value)
+        if not minimum <= result <= maximum:
+            raise ValueError()
+    except ValueError:
         raise Problem(f'{label} harus bilangan bulat antara {minimum} dan {maximum}.')
-    return int(value)
+    return result
 
 def choice(value, options, label):
     if value not in options:
